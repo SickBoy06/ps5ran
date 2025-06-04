@@ -1,167 +1,102 @@
 # PS5 Reseller Dashboard
 
-A modern, elegant inventory management web app for PlayStation 5 resellers.  
-It ships with a **MultistepInventoryModal** that lets you add new consoles through a slick four-step wizard and see a live, always-visible summary card in real time.
-
-![Hero](./docs/screens/hero-dark.png)
+Manage your PlayStation 5 inventory with a modern, dark-blue UI and a slick 4-step **MultistepInventoryModal** wizard.
 
 ---
 
-## ✨ Features
-| Area | Highlights |
-|------|------------|
-| Multistep wizard | 4 steps (Basic Info → Device Details → Condition → Accessories & Notes) with validation & animated transitions |
-| Live-Card | Real-time summary panel (+ progress bar, profit estimation) – always visible |
-| Design system | Tailwind CSS + shadcn/ui + Lucide icons, dark-blue “PS5” theme |
-| Animations | Framer-Motion page/element transitions, accessory pulse effect |
-| State management | React Hooks, type-safe with TypeScript |
-| Build | Vite for ultra-fast dev & prod builds |
+## 🖥️ Quick Start (Windows 10/11 PowerShell)
 
----
+```powershell
+# 1) Clone the repo **including** sub-folders
+PS> git clone https://github.com/SickBoy06/ps5ran.git
+PS> cd ps5ran               # enter the project folder
 
-## 🛠 Technology Stack
-- **React 18** + **TypeScript**
-- **Vite** (dev-server & bundler)
-- **Tailwind CSS** (+ tailwindcss-animate)
-- **shadcn/ui** (Radix UI primitives)
-- **Framer Motion** (animations)
-- **Lucide-react** (icon set)
-- **date-fns** (date utils)
+# 2) Verify prerequisites
+PS> node -v                 # should print v18.x  or newer
+PS> npm -v                  # should print 9.x   or newer
+PS> git --version           # should print 2.x  or newer
 
----
+# 3) Install dependencies  (creates node_modules\ )
+PS> npm install
 
-## ⚡ Prerequisites
-| Requirement | Version |
-|-------------|---------|
-| Node.js | ≥ 18 |
-| npm (or pnpm / yarn) | ≥ 9 |
-| Git | for cloning |
-
-> 💡 Check your versions with `node -v` and `npm -v`.
-
----
-
-## 🚀 Installation & Local Setup
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/your-org/ps5-dashboard.git
-cd ps5-dashboard
-
-# 2. Install dependencies
-npm install        # or pnpm install / yarn
-
-# 3. Start the dev server
-npm run dev
+# 4) Start the dev-server  (runs on http://localhost:3000)
+PS> npm run dev
 ```
 
-Vite will compile in a few hundred ms and print a local URL (default `http://localhost:3000`). Open it in your browser:
-
-```
-➜  Local:   http://localhost:3000/
-```
+> The first run may trigger a Windows Firewall pop-up for **Vite** – click *Allow access*.
 
 ---
 
-## 📦 Production Build
+## 📝 What You’ll See
 
-```bash
-# generate an optimized production bundle
-npm run build
-
-# (optional) preview the build locally
-npm run preview
-```
-
-The static site is output to `dist/`. Deploy it to any static host (Netlify, Vercel, GitHub Pages, S3, …).
-
----
-
-## 🗂 Project Structure
-
-```
-ps5-dashboard/
-├─ public/              # static assets (favicon, svg)
-├─ src/
-│  ├─ assets/           # images, icons
-│  ├─ components/
-│  │  ├─ ui/            # shadcn/ui wrappers (Button, Dialog…)
-│  │  └─ MultistepInventoryModal.tsx
-│  ├─ lib/              # utility helpers (cn.ts, class helpers)
-│  ├─ styles/           # global Tailwind styles
-│  ├─ hooks/            # custom hooks (future)
-│  ├─ App.tsx           # demo dashboard page
-│  └─ main.tsx          # Vite entry point
-├─ tailwind.config.js   # theme + plugin config
-├─ vite.config.ts       # Vite build config
-└─ README.md
-```
-
----
-
-## 🖼 Screenshots / UI Tour
-
-| Step | Preview |
-|------|---------|
-| Dashboard with empty state | `docs/screens/dashboard-empty.png` |
-| Multistep modal – Basic Info | `docs/screens/modal-step1.png` |
-| Live-Card summary | `docs/screens/livecard.png` |
-| Accessories pulse-select | `docs/screens/accessories.gif` |
-
-<sub>_Add screenshots to `docs/screens` to see them here._</sub>
-
----
-
-## 🎯 Using the MultistepInventoryModal
-
-1. Open `App.tsx` (demo) or import the component into your own page:
-
-   ```tsx
-   import MultistepInventoryModal from "@/components/MultistepInventoryModal";
+1. PowerShell prints:
    ```
-
-2. Control it via the `open` prop and callback handlers:
-
-   ```tsx
-   const [open, setOpen] = useState(false);
-
-   <MultistepInventoryModal
-     open={open}
-     onOpenChange={setOpen}
-     onSave={(item) => /* persist item */}
-     onSaveAsDraft={(item) => /* persist draft */}
-   />
+   VITE v4.x  ready in 200 ms
+   ➜  Local:   http://localhost:3000/
    ```
-
-3. Clicking **“Add New PS5”** opens the modal.  
-   Fill required fields (steps 1–2), optional fields (3–4) and either:
-   - **Save as draft** (keeps it as incomplete)
-   - **Add Inventory Item** (adds to list if required data complete)
-
----
-
-## 🧩 Customization
-
-| What | Where |
-|------|-------|
-| Theme colors | `tailwind.config.js` (`extend.colors`) |
-| Profit algorithm | `MultistepInventoryModal.tsx → calculateEstimatedProfit()` |
-| Additional form fields | Extend step components inside the modal |
-| Global styles | `src/styles/globals.css` |
+2. A browser tab opens the **PS5 Dashboard**.
+3. Click **“Add New PS5”** to open the animated 4-step modal.
+4. Required fields (Steps 1–2) must be filled before *Next* activates.
+5. The live card on the left updates instantly as you type.
 
 ---
 
-## 🛠 Troubleshooting
+## ⚙️ Detailed Setup Guide
 
-| Issue | Fix |
-|-------|-----|
-| `ERR ESM: module is not defined` (PostCSS) | Ensure `postcss.config.js` uses `export default {}` syntax |
-| Port 3000 already in use | `npm run dev -- --port=3001` |
-| Tailwind classes not applied | Restart dev-server after editing `tailwind.config.js`; purge paths must include new folders |
-| Icons missing | Verify `lucide-react` installed & import names correct |
-| Browser doesn’t open automatically | Vite default is to print URL; open manually |
+| Step | Command (PowerShell) | Explanation |
+|------|----------------------|-------------|
+| Clone repo | `git clone https://github.com/SickBoy06/ps5ran.git` | Downloads all source files |
+| Enter dir | `cd ps5ran` | Move into project root (contains `package.json`) |
+| Install deps | `npm install` | Fetches **React**, **Vite**, **Tailwind**, etc. |
+| Run dev | `npm run dev` | Starts Vite hot-reload server |
+| Build prod | `npm run build` | Outputs static files to `dist\` |
+| Preview build | `npm run preview` | Serves the bundle on `http://localhost:4173` |
 
 ---
 
-## 📄 License
-MIT © 2025 Your Name / Company
+## ❓ Troubleshooting
+
+| Symptom | Fix |
+|---------|-----|
+| **ENOENT: package.json not found** | Make sure you ran `cd ps5ran` **inside the cloned folder** before `npm install`. |
+| **Port 3000 already in use** | `npm run dev -- --port 3001` |
+| **PostCSS / “module is not defined”** | You’re on Node < 18 or renamed `postcss.config.js`. Upgrade Node or keep file as **ESM** (`export default {}` syntax). |
+| **Tailwind classes missing** | Stop dev server, then `npm run dev` again after editing `tailwind.config.js`. |
+| **Firewall prompt** | Allow access – Vite needs local network permission to serve HMR files. |
+
+---
+
+## 📦 Production Deploy
+
+```powershell
+# build optimized bundle
+PS> npm run build    # → dist\
+
+# preview locally (optional)
+PS> npm run preview  # http://localhost:4173
+```
+
+Upload the contents of **dist\\** to any static host (Vercel, Netlify, GitHub Pages, S3, …).
+
+---
+
+## 🧩 Customising
+
+| Want to… | File |
+|----------|------|
+| Change profit formula | `src/components/MultistepInventoryModal.tsx → calculateEstimatedProfit()` |
+| Tweak colours | `tailwind.config.js` (`extend.colors`) |
+| Add fields to wizard | Edit step components inside `MultistepInventoryModal.tsx` |
+| Replace icons | Use any `lucide-react` icon, e.g. `import { Gamepad } from "lucide-react"` |
+
+---
+
+## ✔️ Checklist Before You Ask for Help
+
+1. ✅ Ran **git clone** successfully  
+2. ✅ `cd` into the cloned folder (you can see `package.json`)  
+3. ✅ **Node 18+** and **npm 9+** installed (`node -v`, `npm -v`)  
+4. ✅ `npm install` completed without errors  
+5. ✅ `npm run dev` shows the Vite banner and a local URL  
+
+If all five are true, the dashboard should be live at <http://localhost:3000>. Happy reselling!

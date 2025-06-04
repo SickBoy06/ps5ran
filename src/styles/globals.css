@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    /* Dark theme by default for PS5 Dashboard */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    
+    /* Card styles */
+    --card: 222.2 84% 6.9%;
+    --card-foreground: 210 40% 98%;
+    
+    /* Popover styles */
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    
+    /* Primary colors - vibrant blue */
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    
+    /* Secondary colors */
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    
+    /* Muted colors */
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    
+    /* Accent colors */
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    
+    /* Destructive colors */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    
+    /* Border and input colors */
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+    
+    /* Border radius */
+    --radius: 0.5rem;
+  }
+  
+  /* PS5 Dashboard custom theme variables */
+  .ps5-theme {
+    /* Dark blue slate backgrounds */
+    --ps5-bg-dark: 222.2 84% 4.9%;
+    --ps5-bg-card: 222.2 47.4% 11.2%;
+    --ps5-bg-hover: 223 47.4% 15%;
+    
+    /* Blue accent colors */
+    --ps5-blue-primary: 224.3 76.3% 48%;
+    --ps5-blue-hover: 224.3 76.3% 53%;
+    --ps5-blue-muted: 224.3 76.3% 40%;
+    
+    /* Status colors */
+    --ps5-success: 142.1 76.2% 36.3%;
+    --ps5-warning: 38 92% 50%;
+    --ps5-error: 0 84.2% 60.2%;
+    
+    /* Text colors */
+    --ps5-text-primary: 210 40% 98%;
+    --ps5-text-secondary: 215 20.2% 75.1%;
+    --ps5-text-muted: 215 20.2% 65.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-slate-950 text-slate-100;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom animations */
+@layer utilities {
+  .animate-pulse-blue {
+    animation: pulse-blue 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* Custom scrollbar for the dark theme */
+@layer components {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-900;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-700 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-600;
+  }
+  
+  .modal-shadow {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+  }
+}
